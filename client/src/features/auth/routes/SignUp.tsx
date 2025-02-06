@@ -57,7 +57,7 @@ const SignUp = () => {
           Register form
         </Text>
 
-        <Flex gap={"20px"} w={"400px"} flexDir={"column"}>
+        <Flex gap={"20px"} w={["100%", "400px"]} flexDir={"column"}>
           <FormInput
             label="First Name"
             name="firstName"
@@ -92,7 +92,7 @@ const SignUp = () => {
             name="confirmPassword"
             control={control}
           />
-          <Flex flex={1} gap={"8px"}>
+          <Flex flexDir={["column", "row"]} flex={1} gap={"8px"}>
             <Button flex={1} onClick={handleSubmit(handleFormSubmit)}>
               Sign Up
             </Button>

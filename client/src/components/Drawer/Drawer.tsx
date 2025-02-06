@@ -18,6 +18,8 @@ export const Drawer = ({
   submittingData = false,
   triggerButton,
   isDone = false,
+  size = "lg",
+  hideFooter,
 }: {
   triggerButton?: ReactElement;
   children: ReactElement;
@@ -26,6 +28,8 @@ export const Drawer = ({
   submittingData?: boolean;
   isSuccess?: boolean;
   isDone?: boolean;
+  size?: "xs" | "md" | "lg";
+  hideFooter?: boolean;
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -44,7 +48,7 @@ export const Drawer = ({
       ) : (
         <Button onClick={onOpen}>Add New Album</Button>
       )}
-      <ChakraDrawer size={"lg"} isOpen={isOpen} onClose={onClose}>
+      <ChakraDrawer size={size} isOpen={isOpen} onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
@@ -52,21 +56,23 @@ export const Drawer = ({
 
           <DrawerBody>{children}</DrawerBody>
 
-          <DrawerFooter gap={"16px"}>
-            <Button variant={"outline"} onClick={onClose}>
-              Close
-            </Button>
-            <Button
-              isLoading={submittingData}
-              variant={"primary"}
-              onClick={() => {
-                onSubmit({ onClose });
-              }}
-              type="submit"
-            >
-              Save
-            </Button>
-          </DrawerFooter>
+          {!hideFooter && (
+            <DrawerFooter gap={"16px"}>
+              <Button variant={"outline"} onClick={onClose}>
+                Close
+              </Button>
+              <Button
+                isLoading={submittingData}
+                variant={"primary"}
+                onClick={() => {
+                  onSubmit({ onClose });
+                }}
+                type="submit"
+              >
+                Save
+              </Button>
+            </DrawerFooter>
+          )}
         </DrawerContent>
       </ChakraDrawer>
     </>

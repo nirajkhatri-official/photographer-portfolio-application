@@ -13,7 +13,7 @@ const NAV_ITEM_LIST_DATA = [
   },
 ];
 
-const SideBar = () => {
+const SideBar = ({ closeDrawer }: { closeDrawer?: () => void }) => {
   const { pathname: currentUrlPath } = useLocation();
   return (
     <Flex height="100%" flexDir="column" gap={"48px"}>
@@ -38,6 +38,7 @@ const SideBar = () => {
                 px={"12px"}
                 to={to}
                 style={navItemColor}
+                onClick={closeDrawer}
               >
                 <Text>{name}</Text>
               </Flex>
