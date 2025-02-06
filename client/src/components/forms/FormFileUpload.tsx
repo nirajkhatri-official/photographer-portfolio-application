@@ -20,7 +20,7 @@ const FormFileUpload = <T extends FieldValues = FieldValues>({
   control,
   name,
   maxSize = 5000000,
-  fileTypeMessage = ".PDF (max. 5 MB)",
+  fileTypeMessage = "Supported formats: .PNG, .JPG, .SVG (max. 5 MB)",
   acceptedFileType = {
     "application/pdf": [".png", ".jpg", ".svg"],
   },

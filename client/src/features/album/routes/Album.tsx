@@ -1,4 +1,4 @@
-import { Flex, SimpleGrid, Text } from "@chakra-ui/react";
+import { Flex, SimpleGrid, Text, useBreakpointValue } from "@chakra-ui/react";
 import { useGetAllAlbums } from "../apis/getAllAlbums";
 import NoDataFound from "../../../components/ui/NoDataFound";
 import Loader from "../../../components/ui/Loader";
@@ -6,6 +6,10 @@ import AlbumCard from "../components/AlbumCard";
 
 const Album = () => {
   const { isLoading, data } = useGetAllAlbums();
+  const templateColumnsSize = useBreakpointValue({
+    md: "1fr 1fr",
+    lg: "1fr 1fr 1fr 1fr",
+  });
 
   if (isLoading) return <Loader />;
 
@@ -24,7 +28,7 @@ const Album = () => {
         <NoDataFound />
       ) : (
         <SimpleGrid
-          gridTemplateColumns={"1fr 1fr 1fr 1fr"}
+          templateColumns={templateColumnsSize}
           padding={"24px"}
           gap={"16px"}
           flexWrap={"wrap"}
